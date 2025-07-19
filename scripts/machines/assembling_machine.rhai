@@ -10,6 +10,13 @@ fn define(mod_info) {
         "factoreras/assets/items/AssemblingMachineIcon.png"
     ));
 
+    for i in 0..8 {
+        mod_info.add(TextureBuilder(
+            "EnergyIcon" + i + "Icon:FactorEras",
+            "factoreras/assets/icons/EnergyIcon" + i + ".png"
+        ));
+    }
+
     // Register the Assembling Machine (Off) block model
     mod_info.add(
         VoxelBuilder(
@@ -337,13 +344,16 @@ private fn assembling_machine_ui(ui, location, voxel, entity, client_state) {
 
 private fn assembling_machine_interactables(ui, location, voxel, entity, client_state) {
     const COOK_FRAMES = 15;
+    const ENERGY_FRAMES = 8;
 
     let metadata = voxel.metadata;
 	let inventory = metadata.get_inventory();
     let progress = metadata.get_u64("State:Progress");
+    let energy = metadata.get_u64("State:ClockworkEnergy");
     let selected_slot = entity.metadata.get_slot_ref("State:SelectedSlot");
 
     let cook_anim = ((progress * COOK_FRAMES) / global::REQUIRED_PROGRESS).min(COOK_FRAMES - 1);
+    let energy_anim = ((energy * ENERGY_FRAMES) / global::MAX_ENERGY).min(ENERGY_FRAMES - 1);
 
     ui.horizontal_top(|ui| {
         ui.item_spacing = Vec2(0., 0.);
@@ -403,6 +413,14 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
             client_state.action(location, "Transfer", metadata);
         }
     });
+
+    ui.vertical(|ui| {
+        client_state.draw_icon(
+            ui,
+            "EnergyIcon" + energy_anim + "Icon:FactorEras",
+            Vec2(12.5, 50.)
+        );
+    });
 }
 
 fn on_message(voxel, location, type, message, game_state) {
@@ -413,7 +431,7 @@ fn on_message(voxel, location, type, message, game_state) {
 	let energy = message;
 
 	let stored_energy = voxel.metadata.get_u64("State:ClockworkEnergy");
-	if stored_energy + energy > global::MAX_ENERGY / 4 {
+	if stored_energy + energy > (global::MAX_ENERGY - game::TICK_RATE * 8) {
 		return event::CANCEL;
 	}
 
