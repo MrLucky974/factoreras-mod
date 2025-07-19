@@ -10,12 +10,19 @@ fn define(mod_info) {
         "factoreras/assets/items/AssemblingMachineIcon.png"
     ));
 
+    // TODO : Move this to a common location
     for i in 0..8 {
         mod_info.add(TextureBuilder(
             "EnergyIcon" + i + "Icon:FactorEras",
             "factoreras/assets/icons/EnergyIcon" + i + ".png"
         ));
     }
+
+    // TODO : Move this to a common location
+    mod_info.add(TextureBuilder(
+        "CancelIcon:FactorEras",
+        "factoreras/assets/icons/Cancel.png"
+    ));
 
     // Register the Assembling Machine (Off) block model
     mod_info.add(
@@ -130,142 +137,6 @@ fn define(mod_info) {
 		)
         .priority(20)
 	);
-
-    // Basic Workbench recipes
-    mod_info.add(
-        RecipeBuilder(
-            "OakPlankAssemblingMachine:FactorEras",
-            "Cut Oak Log into Oak Plank",
-            0,
-            "OakPlankIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("OakLog:VoxelEras", 1))
-        .with_output(WeakItemStack("OakPlank:VoxelEras", 4))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "StickAssemblingMachine:FactorEras",
-            "Cut Oak Plank into Sticks",
-            1,
-            "StickIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("OakPlank:VoxelEras", 2))
-        .with_output(WeakItemStack("Stick:VoxelEras", 4))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "WoodenGearAssemblingMachine:FactorEras",
-            "Craft Wooden Gear",
-            2,
-            "WoodenGearIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("OakPlank:VoxelEras", 4))
-        .with_input(WeakItemStack("Stick:VoxelEras", 4))
-        .with_output(WeakItemStack("WoodenGear:VoxelEras", 2))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "PlantFiberAssemblingMachine:FactorEras",
-            "Weave Trimmings into Fiber",
-            4,
-            "PlantFiberIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("GrassTrimmings:VoxelEras", 4))
-        .with_output(WeakItemStack("PlantFiber:VoxelEras", 2))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "PlantFiberLeavesAssemblingMachine:FactorEras",
-            "Weave Oak Leaves into Fiber",
-            4,
-            "PlantFiberIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("OakLeaves:VoxelEras", 4))
-        .with_output(WeakItemStack("PlantFiber:VoxelEras", 2))
-    );
-
-    // Anvil recipes
-    mod_info.add(
-        RecipeBuilder(
-            "WroughtIronPlateAssemblingMachine:FactorEras",
-            "Forge Wrought Iron into Plate",
-            5,
-            "WroughtIronPlateIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("WroughtIronIngot:VoxelEras", 2))
-        .with_output(WeakItemStack("WroughtIronPlate:VoxelEras", 1))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "CarbonSteelPlateAssemblingMachine:FactorEras",
-            "Forge Carbon Steel into Plate",
-            6,
-            "CarbonSteelPlateIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("CarbonSteelIngot:VoxelEras", 2))
-        .with_output(WeakItemStack("CarbonSteelPlate:VoxelEras", 1))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "CarbonSteelGearAssemblingMachine:FactorEras",
-            "File Carbon Steel into Gear",
-            7,
-            "CarbonSteelGearIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("CarbonSteelPlate:VoxelEras", 2))
-        .with_output(WeakItemStack("CarbonSteelGear:VoxelEras", 1))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "CarbonSteelTubeAssemblingMachine:FactorEras",
-            "Bend Carbon Steel into Tube",
-            8,
-            "CarbonSteelTubeIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("CarbonSteelPlate:VoxelEras", 1))
-        .with_output(WeakItemStack("CarbonSteelTube:VoxelEras", 1))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "BronzePlateAssemblingMachine:FactorEras",
-            "Forge Bronze into Plate",
-            9,
-            "BronzePlateIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("BronzeIngot:VoxelEras", 2))
-        .with_output(WeakItemStack("BronzePlate:VoxelEras", 1))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "SmallBronzeGearAssemblingMachine:FactorEras",
-            "Fashion Bronze Ingot into Bronze Gear",
-            10,
-            "SmallBronzeGearIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("BronzePlate:VoxelEras", 2))
-        .with_output(WeakItemStack("SmallBronzeGear:VoxelEras", 3))
-    );
-
-    mod_info.add(
-        RecipeBuilder(
-            "ClockworkCoreAssemblingMachine:FactorEras",
-            "Form Clockwork Core",
-            11,
-            "ClockworkCoreIcon:VoxelEras"
-        ).crafted_in("AssemblingMachine:FactorEras")
-        .with_input(WeakItemStack("SmallBronzeGear:VoxelEras", 3))
-        .with_input(WeakItemStack("WroughtIronPlate:VoxelEras", 1))
-        .with_output(WeakItemStack("ClockworkCore:VoxelEras", 1))
-    );
 }
 
 fn on_break(voxel, location, target, entity, game_state) {
@@ -335,11 +206,139 @@ fn on_interacting(voxel, location, entity, egui, client_state) {
 }
 
 private fn assembling_machine_ui(ui, location, voxel, entity, client_state) {
-    ui.vertical_centered_justified(|ui| {
-        ui.horizontal_top(|ui| {
-            assembling_machine_interactables(ui, location, voxel, entity, client_state);
-        });
-    });
+    let recipe_types = ["BasicWorkbench:VoxelEras", "Anvil:VoxelEras", "AssemblingMachine:FactorEras"];
+    assembling_machine_recipe_book(ui, location, voxel, entity, recipe_types, client_state);
+    
+    // ui.vertical_centered_justified(|ui| {
+    //     ui.horizontal_top(|ui| {
+    //         assembling_machine_interactables(ui, location, voxel, entity, client_state);
+    //     });
+    // });
+}
+
+private fn assembling_machine_recipe_book(ui, location, voxel, entity, recipe_types, client_state) {
+    let metadata = voxel.metadata;
+    let inventory = metadata.get_inventory();
+
+	ui.vertical_scroll(Vec2(0., 300.), |ui| {
+		ui.item_spacing = Vec2(0., 0.);
+
+        let recipes = [];
+        for recipe in recipe_types {
+            let crafter_recipes = client_state.game_state.get_crafter_recipes(recipe);
+            if crafter_recipes == () {
+                continue;
+            }
+            recipes += crafter_recipes;
+        }
+		loop {
+			let recipes = recipes.drain(0..10);
+			ui.horizontal_top(|ui| {
+				ui.item_spacing = Vec2(0., 0.);
+				for recipe in recipes {
+					recipe_entry(location, ui, entity, recipe, inventory, client_state)
+				}
+			});
+
+			if recipes.len() < 10 {
+				break;
+			}
+		}
+	});
+}
+
+private fn recipe_entry(location, ui, entity, recipe, inventory, client_state) {
+	ui.add_enabled(true, |ui| {
+		let response = client_state.selection_slot(
+			ui,
+			recipe.icon,
+			"",
+			"",
+			false,
+		);
+
+		if response.clicked() {
+			let message = MetaData();
+			message.set_string("Recipe", recipe.identifier);
+			message.set_u64("Quantity", 1);
+			client_state.action(location, "Craft", message);
+		}
+
+		if !response.contains_pointer() {
+			return;
+		}
+
+		response.show_tooltip_ui(|ui| {
+            recipe_tooltip(ui, recipe, inventory, client_state);
+
+			client_state.tip(
+				ui,
+				"Left click to select this recipe."
+			);
+		});
+	});
+}
+
+private fn recipe_tooltip(ui, recipe, inventory, client_state) {
+	client_state.heading(
+		ui,
+		recipe.icon,
+		recipe.name,
+		""
+	);
+
+	ui.allocate_space(Vec2(0., 5.));
+
+	ui.horizontal_top(|ui| {
+		client_state.draw_icon(
+			ui,
+			"CraftAddIcon:VoxelEras",
+			Vec2(24., 24.),
+		);
+		ui.label("Craft Output");
+	});
+
+	if recipe.outputs.len() == 0 {
+		ui.label("Nothing!");
+	} else {
+		for product in recipe.outputs {
+			client_state.product_tooltip(
+				ui,
+				product.quantity,
+				inventory.item_count(product.item),
+				product.item.icon,
+				product.item.name
+			);
+		}
+	}
+
+	ui.allocate_space(Vec2(0., 5.));
+
+	ui.horizontal_top(|ui| {
+		client_state.draw_icon(
+			ui,
+			"CraftSubtractIcon:VoxelEras",
+			Vec2(24., 24.)
+		);
+		ui.label("Craft Cost");
+	});
+
+	if recipe.inputs.len() == 0 {
+		ui.label("Free!");
+	} else {
+		for cost in recipe.inputs {
+            // TODO : Replace by something else?
+			client_state.cost_tooltip(
+				ui,
+				inventory.item_count(cost.item),
+				cost.quantity,
+				cost.item.icon,
+				cost.item.name
+			);
+		}
+	}
+
+	ui.allocate_space(Vec2(0., 5.));
 }
 
 private fn assembling_machine_interactables(ui, location, voxel, entity, client_state) {
@@ -355,9 +354,23 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
     let cook_anim = ((progress * COOK_FRAMES) / global::REQUIRED_PROGRESS).min(COOK_FRAMES - 1);
     let energy_anim = ((energy * ENERGY_FRAMES) / global::MAX_ENERGY).min(ENERGY_FRAMES - 1);
 
+    ui.vertical(|ui| {
+        if client_state.selection_slot(
+            ui,
+            "CancelIcon:FactorEras",
+            "",
+            "Remove the current selected recipe.",
+            false
+        ).clicked() {
+            let metadata = MetaData();
+            client_state.action(location, "Cancel", metadata);
+        }
+    });
+
     ui.horizontal_top(|ui| {
         ui.item_spacing = Vec2(0., 0.);
         for slot_index in 0..4 {
+            // TODO : Set the input slot icon based on the recipe and cycle through the inputs
             let slot_interact = client_state.inventory_slot(
                 ui,
                 inventory[slot_index],
@@ -366,8 +379,8 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
                 } else {
                     false
                 },
-                "",
-                "Input Slot " + (slot_index + 1).to_string()
+                "", // Icon identifier goes here
+                "Insert an ingredient into this slot.\nCan be input into from all sides."
             );
 
             if slot_interact.clicked_down() || slot_interact.secondary_clicked() {
@@ -390,6 +403,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
         );
     });
 
+    // TODO : Set the output slot icon based on the recipe
     ui.vertical(|ui| {
         let slot_interact = client_state.inventory_slot(
             ui,
@@ -399,8 +413,8 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
             } else {
                 false
             },
-            "",
-            "Output Slot"
+            "", // Icon identifier goes here
+            "The output of the assembling machine.\nCan be taken from on all sides."
         );
 
         if slot_interact.clicked_down() || slot_interact.secondary_clicked() {
@@ -517,21 +531,19 @@ fn on_tick(voxel, location, game_state) {
 }
 
 fn on_action(voxel, location, player, type, message, game_state) {
-	if type != "Transfer" {
-		return event::ACCEPT;
-	}
+	if type == "Transfer" {
+		let player = game_state.validate_player_interact(player, location);
+        if player == () { return event::ACCEPT; }
 
-	let player = game_state.validate_player_interact(player, location);
-	if player == () { return event::ACCEPT; }
-
-	let clicked_slot = message.get_slot_ref("State:ClickedSlot");
-	if clicked_slot != () {
-		game_state.voxel_entity_transfer(
-			clicked_slot,
-			location,
-			voxel,
-			player
-		);
+        let clicked_slot = message.get_slot_ref("State:ClickedSlot");
+        if clicked_slot != () {
+            game_state.voxel_entity_transfer(
+                clicked_slot,
+                location,
+                voxel,
+                player
+            );
+        }
 	}
 
 	event::ACCEPT
