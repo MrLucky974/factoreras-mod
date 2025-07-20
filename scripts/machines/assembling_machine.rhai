@@ -80,7 +80,10 @@ fn define(mod_info) {
 			"AssemblingMachineIcon:FactorEras",
 			construct::ROT_COMPASS
 		)
-        .cost(WeakItemStack("Stone:VoxelEras", 1))
+        .cost(WeakItemStack("WroughtIronIngot:VoxelEras", 10))
+        .cost(WeakItemStack("Stone:VoxelEras", 8))
+        .cost(WeakItemStack("ClockworkCore:VoxelEras", 1))
+		.cost(WeakItemStack("SmallBronzeGear:VoxelEras", 2))
 		.variant(
 			ConstructVariantBuilder(voxel::ROT_UP)
 				.place(
@@ -136,7 +139,10 @@ fn on_break(voxel, location, target, entity, game_state) {
 			game_state.drop(slot, location);
 		}
 
-        game_state.drop(WeakItemStack("Stone:VoxelEras", 1), location);
+        game_state.drop(WeakItemStack("WroughtIronIngot:VoxelEras", 10), location);
+        game_state.drop(WeakItemStack("Stone:VoxelEras", 8), location);
+        game_state.drop(WeakItemStack("ClockworkCore:VoxelEras", 1), location);
+		game_state.drop(WeakItemStack("SmallBronzeGear:VoxelEras", 2), location);
 	}
 
 	event::ACCEPT
