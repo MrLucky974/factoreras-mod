@@ -10,20 +10,6 @@ fn define(mod_info) {
         "factoreras/assets/items/AssemblingMachineIcon.png"
     ));
 
-    // TODO : Move this to a common location
-    for i in 0..8 {
-        mod_info.add(TextureBuilder(
-            "EnergyIcon" + i + "Icon:FactorEras",
-            "factoreras/assets/icons/EnergyIcon" + i + ".png"
-        ));
-    }
-
-    // TODO : Move this to a common location
-    mod_info.add(TextureBuilder(
-        "CancelIcon:FactorEras",
-        "factoreras/assets/icons/Cancel.png"
-    ));
-
     // Register the Assembling Machine (Off) block model
     mod_info.add(
         VoxelBuilder(
