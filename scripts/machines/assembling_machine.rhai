@@ -206,14 +206,19 @@ fn on_interacting(voxel, location, entity, egui, client_state) {
 }
 
 private fn assembling_machine_ui(ui, location, voxel, entity, client_state) {
-    let recipe_types = ["BasicWorkbench:VoxelEras", "Anvil:VoxelEras", "AssemblingMachine:FactorEras"];
-    assembling_machine_recipe_book(ui, location, voxel, entity, recipe_types, client_state);
-    
-    // ui.vertical_centered_justified(|ui| {
-    //     ui.horizontal_top(|ui| {
-    //         assembling_machine_interactables(ui, location, voxel, entity, client_state);
-    //     });
-    // });
+    let metadata = voxel.metadata;
+    let recipe = metadata.get_string("State:Recipe");
+
+    if recipe != () {
+        ui.vertical_centered_justified(|ui| {
+            ui.horizontal_top(|ui| {
+                assembling_machine_interactables(ui, location, voxel, entity, client_state);
+            });
+        });
+    } else {
+        let recipe_types = ["BasicWorkbench:VoxelEras", "Anvil:VoxelEras", "AssemblingMachine:FactorEras"];
+        assembling_machine_recipe_book(ui, location, voxel, entity, recipe_types, client_state);
+    }
 }
 
 private fn assembling_machine_recipe_book(ui, location, voxel, entity, recipe_types, client_state) {
@@ -260,7 +265,6 @@ private fn recipe_entry(location, ui, entity, recipe, inventory, client_state) {
 		if response.clicked() {
 			let message = MetaData();
 			message.set_string("Recipe", recipe.identifier);
-			message.set_u64("Quantity", 1);
 			client_state.action(location, "Craft", message);
 		}
 
@@ -359,17 +363,26 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
             ui,
             "CancelIcon:FactorEras",
             "",
-            "Remove the current selected recipe.",
+            "Clear the selected recipe.",
             false
         ).clicked() {
             let metadata = MetaData();
-            client_state.action(location, "Cancel", metadata);
+            client_state.action(location, "Clear", metadata);
         }
     });
 
+    let recipe_id = metadata.get_string("State:Recipe");
+    let recipe = client_state.game_state.get_recipe(recipe_id);
+    if recipe == () {
+        ui.label("Unknown recipe with id: " + recipe_id);
+        return;
+    }
+
     ui.horizontal_top(|ui| {
         ui.item_spacing = Vec2(0., 0.);
-        for slot_index in 0..4 {
+        for slot_index in 0..recipe.inputs.len() {
+            let input = recipe.inputs[slot_index].item;
+
             // TODO : Set the input slot icon based on the recipe and cycle through the inputs
             let slot_interact = client_state.inventory_slot(
                 ui,
@@ -379,7 +392,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
                 } else {
                     false
                 },
-                "", // Icon identifier goes here
+                input.icon, // Icon identifier goes here
                 "Insert an ingredient into this slot.\nCan be input into from all sides."
             );
 
@@ -404,6 +417,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
     });
 
     // TODO : Set the output slot icon based on the recipe
+    let output = recipe.outputs[0].item;
     ui.vertical(|ui| {
         let slot_interact = client_state.inventory_slot(
             ui,
@@ -413,7 +427,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
             } else {
                 false
             },
-            "", // Icon identifier goes here
+            output.icon, // Icon identifier goes here
             "The output of the assembling machine.\nCan be taken from on all sides."
         );
 
@@ -544,7 +558,29 @@ fn on_action(voxel, location, player, type, message, game_state) {
                 player
             );
         }
-	}
+	} else if type == "Craft" {
+        let metadata = voxel.metadata;
+        let recipe = message.get_string("Recipe");
+        metadata.set_string("State:Recipe", recipe);
+        game_state.set_voxel(
+            location,
+            game_state
+                .get_voxel_prefab(voxel.prefab.identifier)
+                .get_variant(voxel.rotation, metadata)
+	    );
+    } else if type == "Clear" {
+        let metadata = voxel.metadata;
+        let recipe = metadata.get_string("State:Recipe");
+        if recipe != () {
+            metadata.remove("State:Recipe");
+            game_state.set_voxel(
+                location,
+                game_state
+                    .get_voxel_prefab(voxel.prefab.identifier)
+                    .get_variant(voxel.rotation, metadata)
+	        );
+        }
+    }
 
 	event::ACCEPT
 }
