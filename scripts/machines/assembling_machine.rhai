@@ -488,21 +488,20 @@ fn on_tick(voxel, location, game_state) {
 	}
 
 	if energy > 0 {
-        let recipe = game_state.find_possible_recipe("AssemblingMachine:FactorEras", [inventory[0], inventory[1], inventory[2], inventory[3]], [inventory[4]]);
+        let recipe_id = metadata.get_string("State:Recipe");
+        let recipe = game_state.get_recipe(recipe_id);
+        
+        let craftable_count = inventory.consumable_count(recipe.inputs); // Check if there is enough items to craft at least one output
+        let can_insert_output = inventory[4] == () || inventory[4].item == recipe.outputs[0].item; // Check if the output slot is empty or if the stack inside is the recipe output item (prevent overriding)
 
-        if recipe != () {
+        if recipe != () && craftable_count > 0 && can_insert_output {
+            progress += 1;
             energy -= 1;
             metadata.set_u64("State:ClockworkEnergy", energy);
             
-            progress += 1;
-            
             if progress >= global::REQUIRED_PROGRESS {
                 // If the progress reaches the required amount, consume the inputs and produce the output
-                for i in 0..4 {
-                    if inventory[i] != () {
-                        inventory[i].quantity -= recipe.inputs[i].quantity;
-                    }
-                }
+                inventory = inventory.consume(recipe.inputs);
 
                 if inventory[4] == () {
 					inventory[4] = recipe.outputs[0];
