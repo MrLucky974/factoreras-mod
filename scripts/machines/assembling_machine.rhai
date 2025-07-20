@@ -383,7 +383,6 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
         for slot_index in 0..recipe.inputs.len() {
             let input = recipe.inputs[slot_index].item;
 
-            // TODO : Set the input slot icon based on the recipe and cycle through the inputs
             let slot_interact = client_state.inventory_slot(
                 ui,
                 inventory[slot_index],
@@ -416,7 +415,6 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
         );
     });
 
-    // TODO : Set the output slot icon based on the recipe
     let output = recipe.outputs[0].item;
     ui.vertical(|ui| {
         let slot_interact = client_state.inventory_slot(
@@ -490,7 +488,7 @@ fn on_tick(voxel, location, game_state) {
 	if energy > 0 {
         let recipe_id = metadata.get_string("State:Recipe");
         let recipe = game_state.get_recipe(recipe_id);
-        
+
         let craftable_count = inventory.consumable_count(recipe.inputs); // Check if there is enough items to craft at least one output
         let can_insert_output = inventory[4] == () || inventory[4].item == recipe.outputs[0].item; // Check if the output slot is empty or if the stack inside is the recipe output item (prevent overriding)
 
