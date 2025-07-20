@@ -1,6 +1,6 @@
 identifier="FactorEras:LuckiusDev"
 name="FactorEras"
-description=""
+description="Add more machines and stuff"
 authors=["LuckiusDev"]
 dependencies=["VoxelEras:DestinyHailstorm"]
 entry="factoreras/entry.rhai"
