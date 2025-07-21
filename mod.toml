@@ -5,4 +5,4 @@ authors=["LuckiusDev"]
 dependencies=["VoxelEras:DestinyHailstorm"]
 entry="factoreras/entry.rhai"
 version="0.1.0"
-sync=false
+sync=true
