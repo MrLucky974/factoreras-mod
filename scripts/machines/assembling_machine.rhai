@@ -585,8 +585,49 @@ fn on_action(voxel, location, player, type, message, game_state) {
 }
 
 fn on_insert(voxel, location, slot, items, direction, game_state) {
+    // Do not insert in the output slot
 	if slot >= 4 {
         return event::CANCEL;
+    }
+
+    // Check if there's a recipe inside the block metadata
+    let metadata = voxel.metadata;
+    let inventory = metadata.get_inventory();
+    if metadata.contains("State:Recipe") == false {
+        return event::CANCEL;
+    }
+
+    let recipe_id = metadata.get_string("State:Recipe");
+    let recipe = game_state.get_recipe(recipe_id);
+
+    // Just in case the recipe identifier was incorrect (maybe a removed recipe)
+    if recipe == () {
+        return event::CANCEL;
+    }
+
+    // Do not add items to slots beyond the recipe size
+    if slot >= recipe.inputs.len {
+        return event::CANCEL;
+    }
+
+    // Do not add items to slots if it's not an ingredient for current recipe
+    let inputs = recipe.inputs
+        .map(|i| i.item);
+    
+    if !inputs.contains(items.item) {
+        return event::CANCEL;
+    }
+
+    // Check if the current slot has an item
+    let current_slot = inventory[slot];
+    if current_slot != () {
+        if current_slot.item == items.item { // It's the same item
+            if current_slot.quantity + items.quantity > current_slot.item.stack_size { // But there's no space left in the stack
+                return event::CANCEL;
+            }
+        } else { // It's not the same item
+            return event::CANCEL;
+        }
     }
 
     event::ACCEPT

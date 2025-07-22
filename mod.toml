@@ -4,5 +4,5 @@ description="Add more machines and stuff"
 authors=["LuckiusDev"]
 dependencies=["VoxelEras:DestinyHailstorm"]
 entry="factoreras/entry.rhai"
-version="0.1.1"
+version="0.2.0"
 sync=true
