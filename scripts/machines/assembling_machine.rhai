@@ -483,8 +483,16 @@ fn on_tick(voxel, location, game_state) {
         let recipe_id = metadata.get_string("State:Recipe");
         let recipe = game_state.get_recipe(recipe_id);
 
-        let craftable_count = inventory.consumable_count(recipe.inputs); // Check if there is enough items to craft at least one output
-        let can_insert_output = inventory[4] == () || inventory[4].item == recipe.outputs[0].item; // Check if the output slot is empty or if the stack inside is the recipe output item (prevent overriding)
+        // Check if there is enough items to craft at least one output
+        let craftable_count = inventory.consumable_count(recipe.inputs);
+        
+        // Check if the output slot is empty or if the stack inside is the recipe output item and if there's room in the stack (prevent overriding)
+        let can_insert_output = inventory[4] == () || 
+        (
+            inventory[4].item == recipe.outputs[0].item 
+            &&
+            inventory[4].quantity + recipe.outputs[0].quantity <= inventory[4].item.stack_size
+        );
 
         if recipe != () && craftable_count > 0 && can_insert_output {
             progress += 1;
