@@ -1,9 +1,9 @@
 fn setup(mod_info) {
     import "factoreras/scripts/icons" as icons;
+    import "factoreras/scripts/items/items" as items;
     import "factoreras/scripts/machines/machines" as machines;
     import "factoreras/scripts/bomb" as bomb;
     import "factoreras/scripts/decoration/decoration" as decoration;
-    import "factoreras/scripts/items/items" as items;
     
     icons::define(mod_info);
 
