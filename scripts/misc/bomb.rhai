@@ -11,7 +11,7 @@ fn define(mod_info) {
 		VoxelBuilder(
 			"Bomb:Explosives",
 			"Bomb",
-			"factoreras/scripts/bomb.rhai"
+			"factoreras/scripts/misc/bomb.rhai"
 		).model(SolidVoxelModel(
             "factoreras/assets/textures/BombTop.png",
             "factoreras/assets/textures/BombSide.png",
@@ -29,7 +29,7 @@ fn define(mod_info) {
 		VoxelBuilder(
 			"BombIgnited:Explosives",
 			"Bomb (Ignited)",
-			"factoreras/scripts/bomb.rhai"
+			"factoreras/scripts/misc/bomb.rhai"
 		).model(SolidVoxelModel(
             "factoreras/assets/textures/BombTopIgnite.png",
             "factoreras/assets/textures/BombSideIgnite.png",
