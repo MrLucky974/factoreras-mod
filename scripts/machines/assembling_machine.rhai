@@ -232,7 +232,7 @@ private fn assembling_machine_recipe_book(ui, location, voxel, entity, recipe_ty
             }
             
             // Filter out all recipes that have more than one output
-            let recipe = crafter_recipes
+            let recipe = recipe
                 .filter(|recipe| recipe.outputs.len() == 1);
             
             // Add the recipes to the array
