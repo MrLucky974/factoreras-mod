@@ -9,6 +9,16 @@ fn define(mod_info) {
 		"factoreras/assets/items/RubberBar.png"
 	));
 
+	mod_info.add(TextureBuilder(
+		"RubberIcon:FactorEras",
+		"factoreras/assets/items/Rubber.png"
+	));
+
+	mod_info.add(TextureBuilder(
+		"WhiteRubberIcon:FactorEras",
+		"factoreras/assets/textures/WhiteRubber.png"
+	));
+
     mod_info.add(ItemBuilder(
         "Sap:FactorEras",
         "Sap",
@@ -35,18 +45,6 @@ fn define(mod_info) {
 		.with_output(WeakItemStack("RubberBar:FactorEras", 1))
 	);
 
-    // mod_info.add(
-	// 	RecipeBuilder(
-	// 		"BrickWorkbench:FactorEras",
-	// 		"Mold Grout into Bricks",
-	// 		5,
-	// 		"BrickIcon:FactorEras"
-	// 	)
-    //     .crafted_in("BasicWorkbench:VoxelEras")
-	// 	.with_input(WeakItemStack("Grout:FactorEras", 2))
-	// 	.with_output(WeakItemStack("Brick:FactorEras", 1))
-	// );
-
     mod_info.add(
 		VoxelBuilder(
 			"Rubber:FactorEras",
@@ -65,13 +63,44 @@ fn define(mod_info) {
 			"Rubber",
 			"Crazy? I was crazy once.",
 			"Building",
-			"RubberBarIcon:FactorEras",
+			"RubberIcon:FactorEras",
 			construct::ROT_NONE
 		).variant(
 			ConstructVariantBuilder(voxel::ROT_UP)
 				.place(
 					0, 0, 0,
 					WeakVoxelVariant("Rubber:FactorEras", voxel::ROT_UP)
+				)
+		)
+		.cost(WeakItemStack("RubberBar:FactorEras", 4))
+		.priority(4)
+	);
+
+	mod_info.add(
+		VoxelBuilder(
+			"WhiteRubber:FactorEras",
+			"White Rubber",
+			"factoreras/scripts/decoration/rubber.rhai"
+		).model(SolidVoxelModel("factoreras/assets/textures/WhiteRubber.png"))
+		.pipette("WhiteRubber:FactorEras")
+		.break_rate(voxel::BREAK_RATE_HARD)
+		.tag("Solid:VoxelEras")
+		.does_break()
+	);
+
+	mod_info.add(
+		ConstructBuilder(
+			"WhiteRubber:FactorEras",
+			"White Rubber",
+			"Crazy? I was crazy once.",
+			"Building",
+			"WhiteRubberIcon:FactorEras",
+			construct::ROT_NONE
+		).variant(
+			ConstructVariantBuilder(voxel::ROT_UP)
+				.place(
+					0, 0, 0,
+					WeakVoxelVariant("WhiteRubber:FactorEras", voxel::ROT_UP)
 				)
 		)
 		.cost(WeakItemStack("RubberBar:FactorEras", 4))
