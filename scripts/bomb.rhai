@@ -4,18 +4,18 @@ const CHAIN_EXPLOSION_DELAY = game::TICK_RATE / 2;
 fn define(mod_info) {
     mod_info.add(TextureBuilder(
 		"BombBlockIcon:Explosives",
-		"explosives_luckiusdev/assets/textures/BombSide.png"
+		"factoreras/assets/textures/BombSide.png"
 	));
 
     mod_info.add(
 		VoxelBuilder(
 			"Bomb:Explosives",
 			"Bomb",
-			"explosives_luckiusdev/scripts/blocks/bomb.rhai"
+			"factoreras/scripts/bomb.rhai"
 		).model(SolidVoxelModel(
-            "explosives_luckiusdev/assets/textures/BombTop.png",
-            "explosives_luckiusdev/assets/textures/BombSide.png",
-            "explosives_luckiusdev/assets/textures/BombBottom.png"
+            "factoreras/assets/textures/BombTop.png",
+            "factoreras/assets/textures/BombSide.png",
+            "factoreras/assets/textures/BombBottom.png"
         ))
 		.pipette("Bomb:Explosives")
 		.tag("Solid:VoxelEras")
@@ -29,11 +29,11 @@ fn define(mod_info) {
 		VoxelBuilder(
 			"BombIgnited:Explosives",
 			"Bomb (Ignited)",
-			"explosives_luckiusdev/scripts/blocks/bomb.rhai"
+			"factoreras/scripts/bomb.rhai"
 		).model(SolidVoxelModel(
-            "explosives_luckiusdev/assets/textures/BombTopIgnite.png",
-            "explosives_luckiusdev/assets/textures/BombSideIgnite.png",
-            "explosives_luckiusdev/assets/textures/BombBottomIgnite.png"
+            "factoreras/assets/textures/BombTopIgnite.png",
+            "factoreras/assets/textures/BombSideIgnite.png",
+            "factoreras/assets/textures/BombBottomIgnite.png"
         ))
 		.pipette("Bomb:Explosives")
 		.tag("Solid:VoxelEras")
