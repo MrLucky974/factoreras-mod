@@ -35,7 +35,7 @@ fn define(mod_info) {
 
     mod_info.add(
 		RecipeBuilder(
-			"RubberBarWorkbench:FactorEras",
+			"RubberBarFurnace:FactorEras",
 			"Fire Sap into Rubber",
 			0,
 			"RubberBarIcon:FactorEras"
