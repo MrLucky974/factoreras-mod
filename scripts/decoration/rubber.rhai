@@ -1,8 +1,8 @@
 fn define(mod_info) {
 	import "factoreras/scripts/utils" as utils;
 
-	utils::define_item(mod_info, "Sap");
-	utils::define_item(mod_info, "Rubber Bar");
+	utils::define_item(mod_info, "Sap", "Collected from trees by using a Tree Tap.");
+	utils::define_item(mod_info, "Rubber Bar", "Bouncy and resistant.");
 
     mod_info.add(
 		RecipeBuilder(
