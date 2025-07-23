@@ -89,9 +89,9 @@ fn define(mod_info) {
 				.place(
 					0, 0, 0,
 					WeakVoxelVariant("AssemblingMachineOff:FactorEras", voxel::ROT_UP)
-					.add_state("State:Inventory", metadata::Inventory(5))
-                    .add_state("State:ClockworkEnergy", metadata::U64(0))
-                    .add_state("State:Progress", metadata::U64(0))
+					    .add_state("State:Inventory", metadata::Inventory(5))
+                        .add_state("State:ClockworkEnergy", metadata::U64(0))
+                        .add_state("State:Progress", metadata::U64(0))
 				)
 		)
         .variant(
@@ -99,9 +99,9 @@ fn define(mod_info) {
 				.place(
 					0, 0, 0,
 					WeakVoxelVariant("AssemblingMachineOff:FactorEras", voxel::ROT_UP1)
-					.add_state("State:Inventory", metadata::Inventory(5))
-                    .add_state("State:ClockworkEnergy", metadata::U64(0))
-                    .add_state("State:Progress", metadata::U64(0))
+					    .add_state("State:Inventory", metadata::Inventory(5))
+                        .add_state("State:ClockworkEnergy", metadata::U64(0))
+                        .add_state("State:Progress", metadata::U64(0))
 				)
 		)
         .variant(
@@ -109,9 +109,9 @@ fn define(mod_info) {
 				.place(
 					0, 0, 0,
 					WeakVoxelVariant("AssemblingMachineOff:FactorEras", voxel::ROT_UP2)
-					.add_state("State:Inventory", metadata::Inventory(5))
-                    .add_state("State:ClockworkEnergy", metadata::U64(0))
-                    .add_state("State:Progress", metadata::U64(0))
+					    .add_state("State:Inventory", metadata::Inventory(5))
+                        .add_state("State:ClockworkEnergy", metadata::U64(0))
+                        .add_state("State:Progress", metadata::U64(0))
 				)
 		)
         .variant(
@@ -119,9 +119,9 @@ fn define(mod_info) {
 				.place(
 					0, 0, 0,
 					WeakVoxelVariant("AssemblingMachineOff:FactorEras", voxel::ROT_UP3)
-					.add_state("State:Inventory", metadata::Inventory(5))
-                    .add_state("State:ClockworkEnergy", metadata::U64(0))
-                    .add_state("State:Progress", metadata::U64(0))
+					    .add_state("State:Inventory", metadata::Inventory(5))
+                        .add_state("State:ClockworkEnergy", metadata::U64(0))
+                        .add_state("State:Progress", metadata::U64(0))
 				)
 		)
         .priority(20)
