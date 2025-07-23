@@ -1,18 +1,18 @@
 fn define(mod_info) {
     import "factoreras/scripts/utils" as utils;
-    
-    utils::define_item(mod_info, "Sulfur Chunk", "factoreras/assets/items/SulfurChunk.png", "");
-	utils::define_item(mod_info, "Sulfur Dust", "factoreras/assets/items/SulfurDust.png", "");
+
+    utils::define_item(mod_info, "Sulfur Chunk", "");
+	utils::define_item(mod_info, "Sulfur Dust", "");
 
     mod_info.add(
 		RecipeBuilder(
 			"SulfurDustMortar:VoxelEras",
 			"Grind Sulfur Chunk into Sulfur Dust",
 			0,
-			"SulfurDustIcon:FactorEras"
-		).crafted_in("Mortar:VoxelEras")
-		.with_input(WeakItemStack("SulfurChunk:FactorEras", 1))
-		.with_output(WeakItemStack("SulfurDust:FactorEras", 3))
+			utils::icon_id("SulfurDust")
+		).crafted_in(utils::id("Mortar", "VoxelEras"))
+		.with_input(WeakItemStack(utils::id("SulfurChunk"), 1))
+		.with_output(WeakItemStack(utils::id("SulfurDust"), 3))
 	);
 
     mod_info.add(
@@ -20,9 +20,9 @@ fn define(mod_info) {
 			"SulfurDustGrinder:VoxelEras",
 			"Grind Sulfur Chunk into Sulfur Dust",
 			0,
-			"SulfurDustIcon:FactorEras"
-		).crafted_in("Grinder:VoxelEras")
-		.with_input(WeakItemStack("SulfurChunk:FactorEras", 1))
-		.with_output(WeakItemStack("SulfurDust:FactorEras", 3))
+			utils::icon_id("SulfurDust")
+		).crafted_in(utils::id("Grinder", "VoxelEras"))
+		.with_input(WeakItemStack(utils::id("SulfurChunk"), 1))
+		.with_output(WeakItemStack(utils::id("SulfurDust"), 3))
 	);
 }

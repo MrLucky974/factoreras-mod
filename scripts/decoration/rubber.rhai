@@ -1,19 +1,19 @@
 fn define(mod_info) {
 	import "factoreras/scripts/utils" as utils;
 
-	utils::define_item(mod_info, "Sap", "factoreras/assets/items/Sap.png", "");
-	utils::define_item(mod_info, "Rubber Bar", "factoreras/assets/items/RubberBar.png", "");
+	utils::define_item(mod_info, "Sap");
+	utils::define_item(mod_info, "Rubber Bar");
 
     mod_info.add(
 		RecipeBuilder(
-			"RubberBarFurnace:FactorEras",
+			utils::id("RubberBarFurnace"),
 			"Convert Sap into Rubber",
 			0,
-			"RubberBarIcon:FactorEras"
+			utils::icon_id("RubberBar")
 		)
-        .crafted_in("CrudeFurnace:VoxelEras")
-		.with_input(WeakItemStack("Sap:FactorEras", 1))
-		.with_output(WeakItemStack("RubberBar:FactorEras", 1))
+        .crafted_in(utils::id("CrudeFurnace"))
+		.with_input(WeakItemStack(utils::id("Sap"), 1))
+		.with_output(WeakItemStack(utils::id("RubberBar"), 1))
 	);
 
 	mod_info.add(TextureBuilder(
