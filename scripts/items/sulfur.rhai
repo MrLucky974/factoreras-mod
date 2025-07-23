@@ -8,7 +8,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			"SulfurDustMortar:VoxelEras",
 			"Grind Sulfur Chunk into Sulfur Dust",
-			0,
+			2,
 			utils::icon_id("SulfurDust")
 		).crafted_in(utils::id("Mortar", "VoxelEras"))
 		.with_input(WeakItemStack(utils::id("SulfurChunk"), 1))
@@ -19,7 +19,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			"SulfurDustGrinder:VoxelEras",
 			"Grind Sulfur Chunk into Sulfur Dust",
-			0,
+			2,
 			utils::icon_id("SulfurDust")
 		).crafted_in(utils::id("Grinder", "VoxelEras"))
 		.with_input(WeakItemStack(utils::id("SulfurChunk"), 1))

@@ -7,7 +7,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			utils::id("GunpowderMortar"),
 			"Mix Gunpowder from Sulfur and Coal Dust",
-			0,
+			2,
 			utils::icon_id("Gunpowder")
 		)
         .crafted_in(utils::id("Mortar", "VoxelEras"))
