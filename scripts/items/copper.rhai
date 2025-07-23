@@ -1,25 +1,6 @@
 fn define(mod_info) {
-    mod_info.add(TextureBuilder(
-		"CopperWireIcon:FactorEras",
-		"factoreras/assets/items/CopperWire.png"
-	));
+    import "factoreras/scripts/utils" as utils;
 
-    mod_info.add(TextureBuilder(
-		"CopperCoilIcon:FactorEras",
-		"factoreras/assets/items/CopperCoil.png"
-	));
-
-    mod_info.add(ItemBuilder(
-        "CopperWire:FactorEras",
-        "Copper Wire",
-        "Copper but very thin. Could be useful to conduct electricity or something idk...",
-        "CopperWireIcon:FactorEras",
-    ));
-
-    mod_info.add(ItemBuilder(
-        "CopperCoil:FactorEras",
-        "Copper Magnetic Coil",
-        "A bunch of very thin copper made into big copper. Does it feel like a step back?",
-        "CopperCoilIcon:FactorEras",
-    ));
+    utils::define_item(mod_info, "Copper Wire", "factoreras/assets/items/CopperWire.png", "Copper but very thin. Could be useful to conduct electricity or something idk...");
+    utils::define_item(mod_info, "Copper Coil", "factoreras/assets/items/CopperCoil.png", "A bunch of very thin copper made into big copper. Does it feel like a step back?");
 }

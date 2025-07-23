@@ -1,42 +1,13 @@
 fn define(mod_info) {
-    mod_info.add(TextureBuilder(
-		"SapIcon:FactorEras",
-		"factoreras/assets/items/Sap.png"
-	));
+	import "factoreras/scripts/utils" as utils;
 
-    mod_info.add(TextureBuilder(
-		"RubberBarIcon:FactorEras",
-		"factoreras/assets/items/RubberBar.png"
-	));
-
-	mod_info.add(TextureBuilder(
-		"RubberIcon:FactorEras",
-		"factoreras/assets/items/Rubber.png"
-	));
-
-	mod_info.add(TextureBuilder(
-		"WhiteRubberIcon:FactorEras",
-		"factoreras/assets/textures/WhiteRubber.png"
-	));
-
-    mod_info.add(ItemBuilder(
-        "Sap:FactorEras",
-        "Sap",
-        "",
-        "SapIcon:FactorEras",
-    ));
-
-    mod_info.add(ItemBuilder(
-        "RubberBar:FactorEras",
-        "Rubber Bar",
-        "",
-        "RubberBarIcon:FactorEras",
-    ));
+	utils::define_item(mod_info, "Sap", "factoreras/assets/items/Sap.png", "");
+	utils::define_item(mod_info, "Rubber Bar", "factoreras/assets/items/RubberBar.png", "");
 
     mod_info.add(
 		RecipeBuilder(
 			"RubberBarFurnace:FactorEras",
-			"Fire Sap into Rubber",
+			"Convert Sap into Rubber",
 			0,
 			"RubberBarIcon:FactorEras"
 		)
@@ -44,6 +15,11 @@ fn define(mod_info) {
 		.with_input(WeakItemStack("Sap:FactorEras", 1))
 		.with_output(WeakItemStack("RubberBar:FactorEras", 1))
 	);
+
+	mod_info.add(TextureBuilder(
+		"RubberIcon:FactorEras",
+		"factoreras/assets/textures/Rubber.png"
+	));
 
     mod_info.add(
 		VoxelBuilder(
@@ -75,6 +51,11 @@ fn define(mod_info) {
 		.cost(WeakItemStack("RubberBar:FactorEras", 4))
 		.priority(4)
 	);
+
+	mod_info.add(TextureBuilder(
+		"WhiteRubberIcon:FactorEras",
+		"factoreras/assets/textures/WhiteRubber.png"
+	));
 
 	mod_info.add(
 		VoxelBuilder(
