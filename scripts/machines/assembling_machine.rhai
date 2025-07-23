@@ -222,11 +222,21 @@ private fn assembling_machine_recipe_book(ui, location, voxel, entity, recipe_ty
 
         let recipes = [];
         for recipe in recipe_types {
-            let crafter_recipes = client_state.game_state.get_crafter_recipes(recipe);
-            if crafter_recipes == () {
+            // Get all the recipes for the current crafter
+            let recipe = client_state.game_state
+                .get_crafter_recipes(recipe);
+            
+            // Pass if no recipes are registered for this crafter
+            if recipe == () {
                 continue;
             }
-            recipes += crafter_recipes;
+            
+            // Filter out all recipes that have more than one output
+            let recipe = crafter_recipes
+                .filter(|recipe| recipe.outputs.len() == 1);
+            
+            // Add the recipes to the array
+            recipes += recipe;
         }
 		loop {
 			let recipes = recipes.drain(0..10);
