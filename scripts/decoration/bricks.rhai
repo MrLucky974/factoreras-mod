@@ -17,7 +17,7 @@ fn define(mod_info) {
     mod_info.add(ItemBuilder(
         "Grout:FactorEras",
         "Grout Dust",
-        "",
+        "Made from sand and gravel.",
         "GroutDustIcon:FactorEras",
     ));
 
@@ -37,7 +37,7 @@ fn define(mod_info) {
     mod_info.add(ItemBuilder(
         "Brick:FactorEras",
         "Brick",
-        "Made from sand and gravel. Used to make brick walls.",
+        "Made from grout dust. Used to make brick walls.",
         "BrickIcon:FactorEras",
     ));
 
@@ -69,7 +69,7 @@ fn define(mod_info) {
 		ConstructBuilder(
 			"Brick:FactorEras",
 			"Bricks",
-			"Sturdy building materials to build factories.",
+			"Sturdy building material to build factories.",
 			"Building",
 			"BrickBlockIcon:FactorEras",
 			construct::ROT_NONE
