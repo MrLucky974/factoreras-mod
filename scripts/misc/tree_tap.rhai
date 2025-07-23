@@ -184,19 +184,14 @@ fn on_tick(voxel, location, game_state) {
 
 	const GENERATION_RATE = game::TICK_RATE * 2;
 
-	let rotation = voxel.rotation;
-	let offset = location + rotation.forward().reflect().offset;
-
-	
-
-	// let wood = location + rotation.forward().reflect().offset;
-	
-	// let wood = game_state.get_voxel(wood);
-
-	// if wood == () || wood.prefab.identifier != utils::id("OakLog", "VoxelEras") {
-	// 	game_state.break_voxel(location, ());
-	// 	return;
-	// }
+	{
+		let offset = voxel::SIDE_FRONT.rotate(voxel.rotation).offset;
+		let voxel = game_state.get_voxel(location + offset);
+		if voxel == () || (!voxel.metadata.has_tag("Tree:VoxelEras") && voxel.prefab.identifier != utils::id("OakLog", "VoxelEras")) {
+			game_state.break_voxel(location, ());
+			return;
+		}
+	}
 
 	if voxel.prefab.identifier != utils::id("TreeTap") { return; }
 
