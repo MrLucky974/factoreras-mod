@@ -25,7 +25,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			"GroutDustMortar:FactorEras",
 			"Mix Sand and Gravel into Grout Dust",
-			2,
+			5,
 			"GroutDustIcon:FactorEras"
 		)
         .crafted_in("Mortar:VoxelEras")

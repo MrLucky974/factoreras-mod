@@ -4,7 +4,7 @@ const CHAIN_EXPLOSION_DELAY = game::TICK_RATE / 2;
 fn define(mod_info) {
     mod_info.add(TextureBuilder(
 		"BombBlockIcon:Explosives",
-		"factoreras/assets/textures/BombSide.png"
+		"factoreras/assets/items/Bomb.png"
 	));
 
     mod_info.add(

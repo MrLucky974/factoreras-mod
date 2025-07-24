@@ -1,7 +1,7 @@
 fn define(mod_info) {
     import "factoreras/scripts/utils" as utils;
 
-    utils::define_icon(mod_info, utils::icon_id("RubberLog"), "factoreras/assets/textures/RubberWood.png");
+    utils::define_icon(mod_info, utils::icon_id("RubberLog"), "factoreras/assets/items/RubberLog.png");
 
     utils::define_item_only(mod_info, "Rubber Log", 
         utils::icon_id("RubberLog"), 

@@ -20,7 +20,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			fe_utils::id("RubberSaplingWorkbench"),
 			"Convert Oak to Rubber Sapling",
-			2,
+			5,
 			fe_utils::icon_id("RubberSapling")
 		)
         .crafted_in(fe_utils::id("BasicWorkbench", "VoxelEras"))

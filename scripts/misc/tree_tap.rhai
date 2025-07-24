@@ -17,7 +17,7 @@ fn define(mod_info) {
 		RecipeBuilder(
 			utils::id("TreeTapWorkbench"),
 			"Manufacture Tree Tap",
-			2,
+			5,
 			utils::icon_id("TreeTap")
 		)
         .crafted_in(utils::id("BasicWorkbench", "VoxelEras"))
@@ -190,11 +190,11 @@ fn on_tick(voxel, location, game_state) {
 		let voxel = game_state.get_voxel(location + offset);
 		if voxel == () || (!voxel.metadata.has_tag("Tree:VoxelEras") && !voxel.metadata.has_tag("RubberFilled:FactorEras")) {
 			game_state.break_voxel(location, ());
-			return;
+			return event::ACCEPT;
 		}
 	}
 
-	if voxel.prefab.identifier != utils::id("TreeTap") { return; }
+	if voxel.prefab.identifier != utils::id("TreeTap") { return event::ACCEPT; }
 
 	let metadata = voxel.metadata;
 	let progress = metadata.get_u64("State:Progress");
@@ -215,4 +215,6 @@ fn on_tick(voxel, location, game_state) {
 			.get_voxel_prefab(utils::id("TreeTap"))
 			.get_variant(voxel.rotation, metadata)
 	);
+
+	event::ACCEPT
 }

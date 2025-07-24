@@ -18,7 +18,7 @@ fn define(mod_info) {
 
 	mod_info.add(TextureBuilder(
 		"RubberIcon:FactorEras",
-		"factoreras/assets/textures/Rubber.png"
+		"factoreras/assets/items/Rubber.png"
 	));
 
     mod_info.add(
@@ -54,7 +54,7 @@ fn define(mod_info) {
 
 	mod_info.add(TextureBuilder(
 		"WhiteRubberIcon:FactorEras",
-		"factoreras/assets/textures/WhiteRubber.png"
+		"factoreras/assets/items/RubberWhite.png"
 	));
 
 	mod_info.add(
