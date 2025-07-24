@@ -57,14 +57,14 @@ fn define(mod_info) {
 					WeakVoxelVariant("Bomb:Explosives", voxel::ROT_UP)
 				)
 		)
-		.cost(WeakItemStack("SulfurDust:FactorEras", 8))
+		.cost(WeakItemStack("Gunpowder:FactorEras", 8))
 		.priority(0)
 	);
 }
 
 fn on_break(voxel, location, target, entity, game_state) {
 	if location == target {
-		game_state.drop(WeakItemStack("SulfurDust:FactorEras", 8), location);
+		game_state.drop(WeakItemStack("Gunpowder:FactorEras", 8), location);
 	}
 
 	event::ACCEPT
