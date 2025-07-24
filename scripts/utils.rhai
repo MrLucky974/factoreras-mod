@@ -15,27 +15,33 @@ fn icon_id(name, mod_id) {
     id(name + "Icon", mod_id)
 }
 
-fn define_item_only(mod_info, item_id, item_name, icon_id, description) {
-    mod_info.add(ItemBuilder(
+fn define_item_only(mod_info, item_id, item_name, icon_id, description, builder) {
+    let item_builder = ItemBuilder(
         id(item_id),
         item_name,
         description,
         icon_id,
-    ));
+    );
+
+    if builder != () {
+        item_builder = builder.call(item_builder);
+    }
+
+    mod_info.add(item_builder);
 }
 
-fn define_item_only(mod_info, item_name, icon_id, description) {
+fn define_item_only(mod_info, item_name, icon_id, description, builder) {
     let item_id = item_name;
     item_id.replace(" ", "");
 
-    define_item_only(mod_info, item_id, item_name, icon_id, description);
+    define_item_only(mod_info, item_id, item_name, icon_id, description, builder);
 }
 
-fn define_item_only(mod_info, item_name, icon_id) {
+fn define_item_only(mod_info, item_name, icon_id, builder) {
     let item_id = item_name;
     item_id.replace(" ", "");
 
-    define_item_only(mod_info, item_name, icon_id, "");
+    define_item_only(mod_info, item_name, icon_id, "", builder);
 }
 
 fn define_icon(mod_info, icon_id, icon_path) {
@@ -53,7 +59,7 @@ fn define_item(mod_info, item_id, item_name, icon_path, description) {
     let icon_id = icon_id(item_id);
 
     define_icon(mod_info, icon_id, icon_path);
-    define_item_only(mod_info, item_id, item_name, icon_id, description);
+    define_item_only(mod_info, item_id, item_name, icon_id, description, ());
 }
 
 fn define_item(mod_info, item_name, icon_path, description) {

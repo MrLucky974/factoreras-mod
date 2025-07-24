@@ -83,7 +83,7 @@ fn define(mod_info) {
 				)
                 .require(
                     0, 0, 1,
-                    WeakConstructRequirement(WeakVoxelVariant(utils::id("OakLog", "VoxelEras"), voxel::ROT_UP))
+                    WeakConstructRequirement(["Solid:VoxelEras", "Log:VoxelEras", utils::id("RubberFilled")])
                 )
 		).variant(
 			ConstructVariantBuilder(voxel::ROT_UP1)
@@ -94,7 +94,7 @@ fn define(mod_info) {
 				)
                 .require(
                     1, 0, 0,
-                    WeakConstructRequirement(WeakVoxelVariant(utils::id("OakLog", "VoxelEras"), voxel::ROT_UP))
+                    WeakConstructRequirement(["Solid:VoxelEras", "Log:VoxelEras", utils::id("RubberFilled")])
                 )
 		).variant(
 			ConstructVariantBuilder(voxel::ROT_UP2)
@@ -105,7 +105,7 @@ fn define(mod_info) {
 				)
                 .require(
                     0, 0, -1,
-                    WeakConstructRequirement(WeakVoxelVariant(utils::id("OakLog", "VoxelEras"), voxel::ROT_UP))
+                    WeakConstructRequirement(["Solid:VoxelEras", "Log:VoxelEras", utils::id("RubberFilled")])
                 )
 		).variant(
 			ConstructVariantBuilder(voxel::ROT_UP3)
@@ -116,7 +116,7 @@ fn define(mod_info) {
 				)
                 .require(
                     -1, 0, 0,
-                    WeakConstructRequirement(WeakVoxelVariant(utils::id("OakLog", "VoxelEras"), voxel::ROT_UP))
+                    WeakConstructRequirement(["Solid:VoxelEras", "Log:VoxelEras", utils::id("RubberFilled")])
                 )
 		)
 		.priority(5)
@@ -184,10 +184,11 @@ fn on_tick(voxel, location, game_state) {
 
 	const GENERATION_RATE = game::TICK_RATE * 2;
 
+	// Break the tree tap if it was placed in front of a user-placed block or air
 	{
 		let offset = voxel::SIDE_FRONT.rotate(voxel.rotation).offset;
 		let voxel = game_state.get_voxel(location + offset);
-		if voxel == () || (!voxel.metadata.has_tag("Tree:VoxelEras") && voxel.prefab.identifier != utils::id("OakLog", "VoxelEras")) {
+		if voxel == () || (!voxel.metadata.has_tag("Tree:VoxelEras") && !voxel.metadata.has_tag("RubberFilled:FactorEras")) {
 			game_state.break_voxel(location, ());
 			return;
 		}
