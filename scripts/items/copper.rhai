@@ -1,8 +1,8 @@
 fn define(mod_info) {
     import "factoreras/scripts/utils" as utils;
 
-    utils::define_item(mod_info, "Copper Wire", "Copper but very thin. Could be useful to conduct electricity or something idk...");
-    utils::define_item(mod_info, "Copper Coil", "A bunch of very thin copper made into big copper. Does it feel like a step back?");
+    utils::define_item(mod_info, "Copper Wire", "Copper but very thin. Electrically conductive.");
+    utils::define_item(mod_info, "Copper Coil", "A bunch of very thin copper made into big copper.\nDoes it feel like a step back?");
 
     mod_info.add(
 		RecipeBuilder(

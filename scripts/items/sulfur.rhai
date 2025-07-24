@@ -1,8 +1,8 @@
 fn define(mod_info) {
     import "factoreras/scripts/utils" as utils;
 
-    utils::define_item(mod_info, "Sulfur Chunk", "");
-	utils::define_item(mod_info, "Sulfur Dust", "");
+    utils::define_item(mod_info, "Sulfur Chunk", "Small chunk of sulfur.\nCan be crushed into dust.");
+	utils::define_item(mod_info, "Sulfur Dust", "Finely ground sulfur.\nCan be mixed with coal for gunpowder.");
 
     mod_info.add(
 		RecipeBuilder(

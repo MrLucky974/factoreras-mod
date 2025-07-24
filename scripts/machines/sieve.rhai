@@ -215,26 +215,20 @@ fn on_tick(voxel, location, game_state) {
 
 	let stalled = false;
 	if progress >= global::PROGRESS_TO_MINE {
-		let found_recipe = game_state.find_possible_recipe("Sieve:FactorEras", [inventory[0]], [(), (), (), ()]);
-		
-		if found_recipe != () {
-			let outputs = [];
-			for output in found_recipe.outputs {
+		let recipe = game_state.find_possible_recipe("Sieve:FactorEras", [inventory[0]], [(), (), (), ()]);
+		if recipe != () {
+			for output in recipe.outputs {
 				if game_state.random_bool(0.5) {
-					outputs.push(output);
-				}
-			}
+					if game_state.try_insert(location.up(), voxel::SIDE_BOTTOM, output) {
 
-			for output in outputs {
-				if game_state.try_insert(location.up(), voxel::SIDE_BOTTOM, output) {
-
-				} else {
-					let above = game_state.get_voxel(location.up());
-					if above.prefab.identifier == "Air:VoxelEras" {
-						game_state.drop(output, location.up());
 					} else {
-						stalled = true;
-						break;
+						let above = game_state.get_voxel(location.up());
+						if above.prefab.identifier == "Air:VoxelEras" {
+							game_state.drop(output, location.up());
+						} else {
+							stalled = true;
+							break;
+						}
 					}
 				}
 			}
@@ -364,11 +358,12 @@ private fn sieve_interactables(ui, location, voxel, entity, client_state) {
 fn on_insert(voxel, location, slot, items, direction, game_state) {
 	if direction == voxel::SIDE_TOP { return event::CANCEL; }
 
-	let is_correct = false;
-	let recipes = game_state.get_crafter_recipes("Sieve:FactorEras");
+	let metadata = voxel.metadata;
 
 	let found_recipe = game_state.find_possible_recipe("Sieve:FactorEras", [items], [(), (), (), ()]);
-	if found_recipe == () { return event::CANCEL; }
+	if found_recipe == () {
+		return event::CANCEL; 
+	}
 
 	event::ACCEPT
 }
