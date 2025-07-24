@@ -403,7 +403,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
                     1,
                     slot_index,
                     slot_interact.clicked_down(),
-                    false,
+                    slot_interact.shifting(),
                 ));
                 client_state.action(location, "Transfer", metadata);
             }
@@ -438,7 +438,7 @@ private fn assembling_machine_interactables(ui, location, voxel, entity, client_
                 1,
                 4,
                 slot_interact.clicked_down(),
-                false,
+                slot_interact.shifting(),
             ));
             client_state.action(location, "Transfer", metadata);
         }
