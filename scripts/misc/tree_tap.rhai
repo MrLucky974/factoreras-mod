@@ -182,7 +182,7 @@ fn on_break(voxel, location, target, entity, game_state) {
 fn on_tick(voxel, location, game_state) {
 	import "factoreras/scripts/utils" as utils;
 
-	const GENERATION_RATE = game::TICK_RATE * 2;
+	const GENERATION_RATE = game::TICK_RATE * 10;
 
 	// Break the tree tap if it was placed in front of a user-placed block or air
 	{
