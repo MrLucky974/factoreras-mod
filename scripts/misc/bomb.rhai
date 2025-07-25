@@ -115,7 +115,6 @@ private fn schedule_explosion(delay, location, game_state) {
 
 private fn explode(voxel, location, game_state) {
     const BASE_EXPLOSION_RADIUS = 3;
-    const DROP_CHANCE = 20;
 
     let radius = BASE_EXPLOSION_RADIUS + game_state.random_float(0., 1.);
 
@@ -132,25 +131,9 @@ private fn explode(voxel, location, game_state) {
             continue;
         }
 
-        if game_state.random_int(0, 100) <= DROP_CHANCE
-        {
-            // TODO : Prevent certain blocks from being broken
-            game_state.break_voxel(location, ());
-        }
-        else {
-            // TODO : Prevent certain blocks from being replaced by air
-            replace_by_air(location, game_state);
-        }
+        // TODO : Prevent certain blocks from being broken
+        game_state.break_voxel(location, ());
     }
-}
-
-private fn replace_by_air(location, game_state) {
-    game_state.set_voxel(
-        location,
-        game_state
-            .get_voxel_prefab("Air:VoxelEras")
-            .get_variant(voxel::ROT_UP, MetaData())
-    );
 }
 
 private fn get_explosion_radius(origin, radius) {
